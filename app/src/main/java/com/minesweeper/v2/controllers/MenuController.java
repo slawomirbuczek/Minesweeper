@@ -17,7 +17,6 @@ public class MenuController extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_menu);
         findViewById(R.id.startButton).setOnClickListener(this);
         findViewById(R.id.rankingButton).setOnClickListener(this);
-        findViewById(R.id.musicButton).setOnClickListener(this);
     }
 
     @Override
