@@ -2,21 +2,19 @@ package com.minesweeper.v2.board;
 
 import android.content.Context;
 
-import com.minesweeper.v2.controllers.GameController;
-import com.minesweeper.v2.controllers.RankingController;
 import com.minesweeper.v2.database.DatabaseRanking;
 import com.minesweeper.v2.labels.MinesCounter;
 import com.minesweeper.v2.labels.Timer;
 import com.minesweeper.v2.levels.Level;
 
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.Random;
+import java.util.function.BiConsumer;
 
 public class Game {
 
@@ -55,37 +53,8 @@ public class Game {
     }
 
     public void onTouchActionDownEventHandler(BoardButton button) {
-
         if (button.isDisabled()) {
-            highlightButtonsAround(button);
-        }
-
-    }
-
-    private void highlightButtonsAround(BoardButton button) {
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-
-                if (i == 0 && j == 0) {
-                    continue;
-                }
-
-                findButton(button.getNumberInRow() + i, button.getNumberInColumn() + j).ifPresent(
-                        bttn -> {
-
-                            if (bttn.isDisabled()) {
-                                return;
-                            }
-
-                            if (!bttn.isFlagged()) {
-                                bttn.highlight();
-                            }
-
-                            highlightedButtons.add(bttn);
-                        }
-                );
-
-            }
+            iterateAroundButton(button, highlightButtonsAround);
         }
     }
 
@@ -117,8 +86,18 @@ public class Game {
         return gameStatus;
     }
 
-    public void killGame() {
+    public void resetGame() {
         timer.reset();
+        boardButtons.forEach(BoardButton::reset);
+        gameStatus = GameStatus.NOT_STARTED;
+    }
+
+    public void pauseTimer() {
+        timer.stop();
+    }
+
+    public void resumeTimer() {
+        timer.resume();
     }
 
     public void addGameToDatabase(Context context) {
@@ -173,38 +152,7 @@ public class Game {
         if (button.getNumber() == 9) {
             gameLost(button);
         } else if (button.getNumber() == 0) {
-            openAreaAroundButton(button);
-        }
-    }
-
-    private void openAreaAroundButton(BoardButton button) {
-        int row = button.getNumberInRow();
-        int column = button.getNumberInColumn();
-
-        for (int i = -1; i <= 1; i++) {
-            for (int j = -1; j <= 1; j++) {
-
-                if (i == 0 && j == 0) {
-                    continue;
-                }
-
-                Optional<BoardButton> optionalBoardButton = findButton(row + i, column + j);
-
-                if (optionalBoardButton.isPresent()) {
-
-                    BoardButton boardButton = optionalBoardButton.get();
-
-                    if (boardButton.isDisabled()) {
-                        continue;
-                    } else if (boardButton.isFlagged()) {
-                        removeFlag(boardButton);
-                    }
-
-                    openField(boardButton);
-
-                }
-
-            }
+            iterateAroundButton(button, openAreaAroundButton);
         }
     }
 
@@ -241,13 +189,10 @@ public class Game {
     }
 
     private void setNumbers() {
-        boardButtons.stream().filter(button -> button.getNumber() == 9).forEach(this::incrementButtonsNumberAroundMine);
+        boardButtons.stream().filter(button -> button.getNumber() == 9).forEach(button -> iterateAroundButton(button, incrementButtonsNumberAroundMine));
     }
 
-    private void incrementButtonsNumberAroundMine(BoardButton button) {
-        int row = button.getNumberInRow();
-        int column = button.getNumberInColumn();
-
+    private void iterateAroundButton(BoardButton button, BiConsumer<Integer, Integer> consumer) {
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
 
@@ -255,16 +200,52 @@ public class Game {
                     continue;
                 }
 
-                findButton(row + i, column + j).ifPresent(
-                        bttn -> {
-                            if (bttn.getNumber() != 9) {
-                                bttn.incrementNumber();
-                            }
-                        }
-                );
+                consumer.accept(button.getNumberInRow() + i, button.getNumberInColumn() + j);
 
             }
         }
-
     }
+
+    private BiConsumer<Integer, Integer> highlightButtonsAround =
+            (row, column) -> findButton(row, column).ifPresent(
+                    bttn -> {
+
+                        if (bttn.isDisabled()) {
+                            return;
+                        }
+
+                        if (!bttn.isFlagged()) {
+                            bttn.highlight();
+                        }
+
+                        highlightedButtons.add(bttn);
+                    }
+            );
+
+    private BiConsumer<Integer, Integer> incrementButtonsNumberAroundMine =
+            (row, column) -> findButton(row, column).ifPresent(
+                    bttn -> {
+
+                        if (bttn.getNumber() != 9) {
+                            bttn.incrementNumber();
+                        }
+
+                    }
+            );
+
+    private BiConsumer<Integer, Integer> openAreaAroundButton =
+            (row, column) -> findButton(row, column).ifPresent(
+                    bttn -> {
+
+                        if (bttn.isDisabled()) {
+                            return;
+                        }
+
+                        if (bttn.isFlagged()) {
+                            removeFlag(bttn);
+                        }
+
+                        openField(bttn);
+                    }
+            );
 }

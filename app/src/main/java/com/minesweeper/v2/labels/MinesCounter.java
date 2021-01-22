@@ -28,5 +28,4 @@ public class MinesCounter extends Label {
             setLabel(minesLeft);
         }
     }
-
 }

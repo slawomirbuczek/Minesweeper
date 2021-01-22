@@ -27,7 +27,6 @@ public enum ButtonImages {
         this.imageId = imageId;
     }
 
-
     public static int getImageId(int number) {
         for (ButtonImages value : values()) {
             if (value.number == number) {
@@ -36,7 +35,6 @@ public enum ButtonImages {
         }
         return R.drawable.button;
     }
-
 
     public int getImageId() {
         return this.imageId;

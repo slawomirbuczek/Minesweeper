@@ -32,7 +32,19 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
         setContentView(R.layout.activity_game);
         findViewById(R.id.face).setOnTouchListener(this);
 
-        newGame();
+        initGame();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        game.pauseTimer();
+    }
+
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        game.resumeTimer();
     }
 
     @Override
@@ -77,16 +89,7 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
 
     }
 
-    private void newGame() {
-
-        if (game != null) {
-            game.killGame();
-        }
-
-        findViewById(R.id.face).setBackgroundResource(R.drawable.face_unpressed);
-
-        List<BoardButton> boardButtons = createBoard();
-
+    private void initGame() {
         ImageView timer_first = findViewById(R.id.timer_number_first);
         ImageView timer_second = findViewById(R.id.timer_number_second);
         ImageView timer_third = findViewById(R.id.timer_number_third);
@@ -95,9 +98,16 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
         ImageView minesCounter_second = findViewById(R.id.mine_counter_second);
         ImageView minesCounter_third = findViewById(R.id.mine_counter_third);
 
+        List<BoardButton> boardButtons = createBoard();
+
         game = new Game(boardButtons,
                 new Timer(timer_first, timer_second, timer_third),
                 new MinesCounter(minesCounter_first, minesCounter_second, minesCounter_third));
+    }
+
+    private void newGame() {
+        game.resetGame();
+        findViewById(R.id.face).setBackgroundResource(R.drawable.face_unpressed);
     }
 
     private List<BoardButton> createBoard() {

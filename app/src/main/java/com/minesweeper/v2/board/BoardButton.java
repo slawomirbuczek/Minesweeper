@@ -42,8 +42,15 @@ public class BoardButton extends androidx.appcompat.widget.AppCompatButton {
         this.setDefaultButton();
     }
 
-    void changeImage() {
-        this.setBackgroundResource(ButtonImages.getImageId(this.number));
+    public void reset() {
+        number = 0;
+        flagged = false;
+        disabled = false;
+        setDefaultButton();
+    }
+
+    public void changeImage() {
+        this.setBackgroundResource(ButtonImages.getImageId(number));
     }
 
     public int getNumber() {
