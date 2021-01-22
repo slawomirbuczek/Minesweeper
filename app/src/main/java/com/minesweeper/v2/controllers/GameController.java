@@ -1,7 +1,6 @@
 package com.minesweeper.v2.controllers;
 
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -31,20 +30,22 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         findViewById(R.id.face).setOnTouchListener(this);
-
         initGame();
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
         game.pauseTimer();
+        super.onPause();
+
     }
 
     @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        game.resumeTimer();
+    protected void onResume() {
+        super.onResume();
+        if (game != null) {
+            game.resumeTimer();
+        }
     }
 
     @Override
@@ -89,6 +90,11 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
 
     }
 
+    private void newGame() {
+        game.resetGame();
+        findViewById(R.id.face).setBackgroundResource(R.drawable.face_unpressed);
+    }
+
     private void initGame() {
         ImageView timer_first = findViewById(R.id.timer_number_first);
         ImageView timer_second = findViewById(R.id.timer_number_second);
@@ -105,23 +111,20 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
                 new MinesCounter(minesCounter_first, minesCounter_second, minesCounter_third));
     }
 
-    private void newGame() {
-        game.resetGame();
-        findViewById(R.id.face).setBackgroundResource(R.drawable.face_unpressed);
-    }
 
     private List<BoardButton> createBoard() {
-        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = getIntent().getExtras().getInt("width");
+        int height = getIntent().getExtras().getInt("height");
 
-        float widthPx = displayMetrics.widthPixels;
-        float heightPx = displayMetrics.heightPixels;
-        float borderPx = 13 * displayMetrics.density;
+        int borderPx = (int) getResources().getDimension(R.dimen.border_size);
+        int barPx = (int) getResources().getDimension(R.dimen.bar_height);
+        int remainedHeight = height - barPx - (3 * borderPx);
 
         int columns = Level.getCurrentLevel().getColumns();
 
-        int buttonSize = (int) ((widthPx - (2 * borderPx)) / columns);
+        int buttonSize = (width - (2 * borderPx)) / columns;
 
-        int rows = (int) ((heightPx * 0.85) / buttonSize);
+        int rows = remainedHeight / buttonSize;
 
         return createButtons(rows, columns, buttonSize);
     }

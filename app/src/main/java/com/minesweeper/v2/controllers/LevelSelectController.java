@@ -25,18 +25,22 @@ public class LevelSelectController extends AppCompatActivity implements View.OnC
     @Override
     public void onClick(View v) {
 
+        Intent intent = new Intent(this, GameController.class);
+        intent.putExtra("width", findViewById(R.id.level_select_layout).getWidth());
+        intent.putExtra("height", findViewById(R.id.level_select_layout).getHeight());
+
         switch (v.getId()) {
             case R.id.easyButton:
                 Level.setCurrentLevel(Level.EASY);
-                startActivity(new Intent(this, GameController.class));
+                startActivity(intent);
                 break;
             case R.id.mediumButton:
                 Level.setCurrentLevel(Level.MEDIUM);
-                startActivity(new Intent(this, GameController.class));
+                startActivity(intent);
                 break;
             case R.id.hardButton:
                 Level.setCurrentLevel(Level.HARD);
-                startActivity(new Intent(this, GameController.class));
+                startActivity(intent);
                 break;
             case R.id.selectLevelBackButton:
                 startActivity(new Intent(this, MenuController.class));
@@ -44,4 +48,5 @@ public class LevelSelectController extends AppCompatActivity implements View.OnC
         }
 
     }
+
 }

@@ -45,15 +45,6 @@ public class RankingController extends AppCompatActivity implements View.OnClick
         recyclerView.setLayoutAnimation(animation);
     }
 
-    private void runLayoutAnimation() {
-        final LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(
-                this, R.anim.layout_animation_fall_down
-        );
-        recyclerView.setLayoutAnimation(animation);
-        recyclerView.getAdapter().notifyDataSetChanged();
-        recyclerView.scheduleLayoutAnimation();
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -74,5 +65,14 @@ public class RankingController extends AppCompatActivity implements View.OnClick
     protected void onStop() {
         super.onStop();
         databaseRanking.close();
+    }
+
+    private void runLayoutAnimation() {
+        final LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(
+                this, R.anim.layout_animation_fall_down
+        );
+        recyclerView.setLayoutAnimation(animation);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
     }
 }

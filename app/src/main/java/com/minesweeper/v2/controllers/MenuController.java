@@ -23,17 +23,12 @@ public class MenuController extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-            case R.id.startButton:
-                startActivity(new Intent(this, LevelSelectController.class));
-                break;
-            case R.id.rankingButton:
-                startActivity(new Intent(this, RankingController.class));
-                break;
-            case R.id.musicButton:
-
-                break;
+        if (v.getId() == R.id.startButton) {
+            startActivity(new Intent(this, LevelSelectController.class));
+        } else if (v.getId() == R.id.rankingButton) {
+            startActivity(new Intent(this, RankingController.class));
         }
 
     }
+
 }
