@@ -16,16 +16,22 @@ public class MenuController extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         findViewById(R.id.startButton).setOnClickListener(this);
-        findViewById(R.id.rankingButton).setOnClickListener(this);
+        findViewById(R.id.localRankingButton).setOnClickListener(this);
+        findViewById(R.id.globalRankingButton).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
 
-        if (v.getId() == R.id.startButton) {
-            startActivity(new Intent(this, LevelSelectController.class));
-        } else if (v.getId() == R.id.rankingButton) {
-            startActivity(new Intent(this, RankingController.class));
+        switch (v.getId()) {
+            case R.id.startButton:
+                startActivity(new Intent(this, LevelSelectController.class));
+                break;
+            case R.id.localRankingButton:
+                startActivity(new Intent(this, LocalRankingController.class));
+                break;
+            case R.id.globalRankingButton:
+                startActivity(new Intent(this, LoginController.class));
         }
 
     }

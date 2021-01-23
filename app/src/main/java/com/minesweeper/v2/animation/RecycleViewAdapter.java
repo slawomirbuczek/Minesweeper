@@ -1,4 +1,4 @@
-package com.minesweeper.v2.database;
+package com.minesweeper.v2.animation;
 
 import android.content.Context;
 import android.database.Cursor;

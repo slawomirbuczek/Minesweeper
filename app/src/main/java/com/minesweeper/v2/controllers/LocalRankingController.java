@@ -12,10 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.minesweeper.R;
 import com.minesweeper.v2.database.DatabaseRanking;
-import com.minesweeper.v2.database.RecycleViewAdapter;
+import com.minesweeper.v2.animation.RecycleViewAdapter;
 import com.minesweeper.v2.levels.Level;
 
-public class RankingController extends AppCompatActivity implements View.OnClickListener {
+public class LocalRankingController extends AppCompatActivity implements View.OnClickListener {
 
     DatabaseRanking databaseRanking;
     RecyclerView recyclerView;
@@ -25,12 +25,12 @@ public class RankingController extends AppCompatActivity implements View.OnClick
     protected void onCreate(@Nullable Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ranking);
-        findViewById(R.id.rankingEasyButton).setOnClickListener(this);
-        findViewById(R.id.rankingMediumButton).setOnClickListener(this);
-        findViewById(R.id.rankingHardButton).setOnClickListener(this);
+        setContentView(R.layout.activity_local_ranking);
+        findViewById(R.id.globalRankingEasyButton).setOnClickListener(this);
+        findViewById(R.id.globalRankingMediumButton).setOnClickListener(this);
+        findViewById(R.id.globalRankingHardButton).setOnClickListener(this);
 
-        recyclerView = findViewById(R.id.recycleView);
+        recyclerView = findViewById(R.id.localRankingRecycleView);
 
         databaseRanking = new DatabaseRanking(this);
         databaseRanking.open();
@@ -48,13 +48,13 @@ public class RankingController extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.rankingEasyButton:
+            case R.id.globalRankingEasyButton:
                 adapter.swapCursor(databaseRanking.getRanking(Level.EASY));
                 break;
-            case R.id.rankingMediumButton:
+            case R.id.globalRankingMediumButton:
                 adapter.swapCursor(databaseRanking.getRanking(Level.MEDIUM));
                 break;
-            case R.id.rankingHardButton:
+            case R.id.globalRankingHardButton:
                 adapter.swapCursor(databaseRanking.getRanking(Level.HARD));
                 break;
         }
