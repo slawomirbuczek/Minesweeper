@@ -1,10 +1,9 @@
-package com.minesweeper.client.asynctask;
+package com.minesweeper.client.asynctask.ranking;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.minesweeper.client.model.Message;
-import com.minesweeper.client.service.LoginService;
+import com.minesweeper.client.model.ResponseMessage;
 import com.minesweeper.game.levels.Level;
 
 import org.json.JSONObject;
@@ -22,9 +21,11 @@ import java.util.Collections;
 public class PostGlobalRankingRecordTask extends AsyncTask<JSONObject, Void, Void> {
 
     private final Level level;
+    private final String JWT;
 
-    public PostGlobalRankingRecordTask(Level level) {
+    public PostGlobalRankingRecordTask(Level level, String jwt) {
         this.level = level;
+        JWT = jwt;
     }
 
     @Override
@@ -36,7 +37,7 @@ public class PostGlobalRankingRecordTask extends AsyncTask<JSONObject, Void, Voi
     private void postRecord(JSONObject jsonObject) {
         try {
             HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.set("Authorization", LoginService.getJWT());
+            httpHeaders.set("Authorization", JWT);
             httpHeaders.setAccept(Collections.singletonList(MediaType.ALL));
             httpHeaders.setContentType(MediaType.APPLICATION_JSON);
 
@@ -44,16 +45,14 @@ public class PostGlobalRankingRecordTask extends AsyncTask<JSONObject, Void, Voi
 
             Log.i("getRankingEntity", httpEntity.toString());
 
-            String RANKING_URL = "https://minesweeper-ranking.herokuapp.com/api/ranking/";
-
             RestTemplate restTemplate = new RestTemplate(true);
             restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
-            ResponseEntity<Message> response = restTemplate.exchange(
-                    RANKING_URL + level.name(),
+            ResponseEntity<ResponseMessage> response = restTemplate.exchange(
+                    "https://minesweeper-ranking.herokuapp.com/api/ranking/" + level.name(),
                     HttpMethod.POST,
                     httpEntity,
-                    Message.class
+                    ResponseMessage.class
             );
 
             Log.i("Post record response", response.getBody().getMessage());

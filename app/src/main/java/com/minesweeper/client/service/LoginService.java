@@ -1,30 +1,26 @@
 package com.minesweeper.client.service;
 
-import android.util.Log;
+import android.content.Context;
 
-import com.minesweeper.client.asynctask.LoginTask;
+import com.minesweeper.client.asynctask.auth.LoginTask;
+import com.minesweeper.client.model.LoginResponse;
 
 import org.json.JSONObject;
 
 public class LoginService {
 
-    private static String JWT;
-
-    public static boolean login(String username, String password) {
+    public static String login(String username, String password, Context context) {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("username", username);
             jsonObject.put("password", password);
             LoginTask loginTask = new LoginTask();
-            JWT = loginTask.execute(jsonObject).get();
+            LoginResponse response = loginTask.execute(jsonObject).get();
+            Preferences.addJwt(response.getJWT(), context);
+            return response.getResponseMessage().getMessage();
         } catch (Exception e) {
-            Log.d("loginServiceEx", e.getMessage());
+            return "JSONObject error";
         }
-        return JWT != null;
-    }
-
-    public static String getJWT() {
-        return JWT;
     }
 
 }

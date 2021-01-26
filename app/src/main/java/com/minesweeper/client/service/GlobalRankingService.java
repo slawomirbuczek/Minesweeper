@@ -1,10 +1,10 @@
 package com.minesweeper.client.service;
 
-import android.location.Location;
+import android.content.Context;
 import android.util.Log;
 
-import com.minesweeper.client.asynctask.GetGlobalRankingTask;
-import com.minesweeper.client.asynctask.PostGlobalRankingRecordTask;
+import com.minesweeper.client.asynctask.ranking.GetGlobalRankingTask;
+import com.minesweeper.client.asynctask.ranking.PostGlobalRankingRecordTask;
 import com.minesweeper.client.model.RankingRecord;
 import com.minesweeper.game.levels.Level;
 
@@ -17,7 +17,7 @@ import java.util.Locale;
 
 public class GlobalRankingService {
 
-    public static void postRecord(float time, Level level) {
+    public static void postRecord(float time, Level level, Context context) {
         JSONObject jsonObject = new JSONObject();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault());
         try {
@@ -26,12 +26,16 @@ public class GlobalRankingService {
         } catch (JSONException e) {
             Log.i("postRecord JsonEx", e.getMessage());
         }
-        PostGlobalRankingRecordTask postGlobalRankingRecordTask = new PostGlobalRankingRecordTask(level);
+
+        String jwt = Preferences.getJwt(context);
+
+        PostGlobalRankingRecordTask postGlobalRankingRecordTask = new PostGlobalRankingRecordTask(level, jwt);
         postGlobalRankingRecordTask.execute(jsonObject);
     }
 
-    public static RankingRecord[] getRanking(Level level) {
-        GetGlobalRankingTask getGlobalRankingTask = new GetGlobalRankingTask();
+    public static RankingRecord[] getRanking(Level level, Context context) {
+        String jwt = Preferences.getJwt(context);
+        GetGlobalRankingTask getGlobalRankingTask = new GetGlobalRankingTask(jwt);
         try {
             return getGlobalRankingTask.execute(level).get();
         } catch (Exception e) {

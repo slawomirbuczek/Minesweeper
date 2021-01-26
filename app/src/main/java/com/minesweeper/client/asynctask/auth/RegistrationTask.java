@@ -1,9 +1,9 @@
-package com.minesweeper.client.asynctask;
+package com.minesweeper.client.asynctask.auth;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.minesweeper.client.model.Message;
+import com.minesweeper.client.model.ResponseMessage;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
@@ -35,11 +35,11 @@ public class RegistrationTask extends AsyncTask<JSONObject, Void, String> {
 
             RestTemplate restTemplate = new RestTemplate(true);
 
-            ResponseEntity<Message> response = restTemplate.exchange(
+            ResponseEntity<ResponseMessage> response = restTemplate.exchange(
                     "https://minesweeper-ranking.herokuapp.com/api/register",
                     HttpMethod.POST,
                     httpEntity,
-                    Message.class);
+                    ResponseMessage.class);
 
             return response.getBody().getMessage();
         } catch (HttpClientErrorException e) {
@@ -49,13 +49,13 @@ public class RegistrationTask extends AsyncTask<JSONObject, Void, String> {
 
     private String getExceptionMessage(String result) {
         ObjectMapper objectMapper = new ObjectMapper();
-        Message message;
+        ResponseMessage responseMessage;
         try {
-            message = objectMapper.readValue(result, Message.class);
+            responseMessage = objectMapper.readValue(result, ResponseMessage.class);
         } catch (IOException e) {
             Log.d("Validation Exception", e.getMessage());
             return "Registration failed";
         }
-        return message.getMessage();
+        return responseMessage.getMessage();
     }
 }

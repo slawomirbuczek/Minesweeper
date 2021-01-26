@@ -1,10 +1,9 @@
-package com.minesweeper.client.asynctask;
+package com.minesweeper.client.asynctask.ranking;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
 import com.minesweeper.client.model.RankingRecord;
-import com.minesweeper.client.service.LoginService;
 import com.minesweeper.game.levels.Level;
 
 import org.springframework.http.HttpEntity;
@@ -20,6 +19,12 @@ import java.util.Collections;
 
 public class GetGlobalRankingTask extends AsyncTask<Level, Void, RankingRecord[]> {
 
+    private final String JWT;
+
+    public GetGlobalRankingTask(String jwt) {
+        JWT = jwt;
+    }
+
     @Override
     protected RankingRecord[] doInBackground(Level... levels) {
         return getRanking(levels[0]);
@@ -29,18 +34,20 @@ public class GetGlobalRankingTask extends AsyncTask<Level, Void, RankingRecord[]
         try {
 
             HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.set("Authorization", LoginService.getJWT());
+            httpHeaders.set("Authorization", JWT);
             httpHeaders.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
 
             HttpEntity<Object> httpEntity = new HttpEntity<>(httpHeaders);
 
-            Log.i("getRankingEntity", httpEntity.toString());
-            String RANKING_URL = "https://minesweeper-ranking.herokuapp.com/api/ranking/";
-
             RestTemplate restTemplate = new RestTemplate(true);
             restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
-            ResponseEntity<RankingRecord[]> response = restTemplate.exchange(RANKING_URL + level.toString(), HttpMethod.GET, httpEntity, RankingRecord[].class);
+            ResponseEntity<RankingRecord[]> response = restTemplate.exchange(
+                    "https://minesweeper-ranking.herokuapp.com/api/ranking/" + level.toString(),
+                    HttpMethod.GET,
+                    httpEntity,
+                    RankingRecord[].class
+            );
 
             return response.getBody();
         } catch (HttpStatusCodeException e) {

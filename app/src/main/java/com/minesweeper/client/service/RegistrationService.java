@@ -2,7 +2,7 @@ package com.minesweeper.client.service;
 
 import android.util.Log;
 
-import com.minesweeper.client.asynctask.RegistrationTask;
+import com.minesweeper.client.asynctask.auth.RegistrationTask;
 
 import org.json.JSONObject;
 

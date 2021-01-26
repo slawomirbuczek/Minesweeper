@@ -30,7 +30,7 @@ public class GlobalRankingController extends AppCompatActivity implements View.O
 
         recyclerView = findViewById(R.id.globalRankingRecycleView);
 
-        adapter = new GlobalRankingRecycleViewAdapter(this, GlobalRankingService.getRanking(Level.EASY));
+        adapter = new GlobalRankingRecycleViewAdapter(this, GlobalRankingService.getRanking(Level.EASY, this));
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -52,7 +52,7 @@ public class GlobalRankingController extends AppCompatActivity implements View.O
                 break;
         }
 
-        adapter.swapRanking(GlobalRankingService.getRanking(level));
+        adapter.swapRanking(GlobalRankingService.getRanking(level, this));
 
         runLayoutAnimation();
     }

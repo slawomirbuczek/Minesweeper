@@ -34,8 +34,7 @@ public class MenuController extends AppCompatActivity implements View.OnClickLis
                 startActivity(new Intent(this, GlobalRankingController.class));
                 break;
             case R.id.menuLogoutButton:
-                Intent intent = new Intent(this, LoginController.class).putExtra("logout", true);
-                startActivity(intent);
+                startActivity(new Intent(this, LoginController.class));
                 break;
         }
     }

@@ -111,7 +111,7 @@ public class Game {
         DatabaseRanking databaseRanking = new DatabaseRanking(context);
         databaseRanking.addSet(date, time, Level.getCurrentLevel().name());
 
-        GlobalRankingService.postRecord(time, Level.getCurrentLevel());
+        GlobalRankingService.postRecord(time, Level.getCurrentLevel(), context);
     }
 
     private void firstClick(BoardButton button) {
