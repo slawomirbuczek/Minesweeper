@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/level_select_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/menu">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:fontFamily="casual"
+        android:text="@string/app_name"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="60sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/easyButton"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="200dp"
+        android:background="#0000"
+        android:fontFamily="casual"
+        android:text="@string/easy"
+        android:textAllCaps="false"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/mediumButton"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="325dp"
+        android:background="#0000"
+        android:fontFamily="casual"
+        android:text="@string/medium"
+        android:textAllCaps="false"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/hardButton"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="450dp"
+        android:background="#0000"
+        android:fontFamily="casual"
+        android:text="@string/hard"
+        android:textAllCaps="false"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/selectLevelBackButton"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="575dp"
+        android:background="#0000"
+        android:fontFamily="casual"
+        android:text="@string/back"
+        android:textAllCaps="false"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

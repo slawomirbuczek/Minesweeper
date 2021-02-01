@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/gameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <ImageView
+        android:id="@+id/border_up"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/border_size"
+        android:background="@drawable/border_hor_2x"
+        android:contentDescription="@string/desc_border_up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/border_mid"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/border_size"
+        android:background="@drawable/border_hor_2x"
+        android:contentDescription="@string/desc_border_mid"
+        app:layout_constraintBottom_toTopOf="@+id/board_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/border_bottom"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/border_size"
+        android:background="@drawable/border_hor_2x"
+        android:contentDescription="@string/desc_border_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/border_left"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="0dp"
+        android:background="@drawable/border_vert_2x"
+        android:contentDescription="@string/desc_border_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/border_right"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="0dp"
+        android:background="@drawable/border_vert_2x"
+        android:contentDescription="@string/desc_border_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/corner_bottom_left"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="@dimen/border_size"
+        android:contentDescription="@string/desc_corner_bottom_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/corner_bottom_left_2x" />
+
+    <ImageView
+        android:id="@+id/corner_bottom_right"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="@dimen/border_size"
+        android:contentDescription="@string/desc_corner_bottom_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/corner_bottom_right_2x" />
+
+    <ImageView
+        android:id="@+id/corner_up_left"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="@dimen/border_size"
+        android:contentDescription="@string/desc_corner_up_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/corner_up_left_2x" />
+
+    <ImageView
+        android:id="@+id/corner_up_right"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="@dimen/border_size"
+        android:contentDescription="@string/desc_corner_up_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/corner_up_right_2x" />
+
+    <ImageView
+        android:id="@+id/t_left"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="@dimen/border_size"
+        android:contentDescription="@string/desc_t_left"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/border_mid"
+        app:srcCompat="@drawable/t_left_2x" />
+
+    <ImageView
+        android:id="@+id/t_right"
+        android:layout_width="@dimen/border_size"
+        android:layout_height="@dimen/border_size"
+        android:contentDescription="@string/desc_t_right"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/border_mid"
+        app:srcCompat="@drawable/t_right_2x" />
+
+    <Button
+        android:id="@+id/face"
+        android:layout_width="@dimen/bar_height"
+        android:layout_height="@dimen/bar_height"
+        android:background="@drawable/face_unpressed"
+        android:contentDescription="@string/desc_face_button"
+        app:layout_constraintBottom_toTopOf="@+id/border_mid"
+        app:layout_constraintEnd_toStartOf="@+id/border_right"
+        app:layout_constraintStart_toEndOf="@+id/border_left"
+        app:layout_constraintTop_toBottomOf="@+id/border_up" />
+
+    <ImageView
+        android:id="@+id/mine_counter_background"
+        android:layout_width="84dp"
+        android:layout_height="@dimen/bar_height"
+        android:contentDescription="@string/desc_mine_counter_background"
+        app:layout_constraintBottom_toTopOf="@+id/border_mid"
+        app:layout_constraintStart_toEndOf="@+id/border_left"
+        app:layout_constraintTop_toBottomOf="@+id/border_up"
+        app:srcCompat="@drawable/nums_background" />
+
+    <ImageView
+        android:id="@+id/timer_background"
+        android:layout_width="84dp"
+        android:layout_height="@dimen/bar_height"
+        android:contentDescription="@string/desc_timer_background"
+        app:layout_constraintBottom_toTopOf="@+id/border_mid"
+        app:layout_constraintEnd_toStartOf="@+id/border_right"
+        app:layout_constraintTop_toBottomOf="@+id/border_up"
+        app:srcCompat="@drawable/nums_background" />
+
+    <ImageView
+        android:id="@+id/mine_counter_first"
+        android:layout_width="25dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="2dp"
+        android:contentDescription="@string/desc_mine_counter_number"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_counter_background"
+        app:layout_constraintStart_toStartOf="@+id/mine_counter_background"
+        app:layout_constraintTop_toTopOf="@+id/mine_counter_background"
+        app:srcCompat="@drawable/d0" />
+
+    <ImageView
+        android:id="@+id/timer_number_second"
+        android:layout_width="25dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="2dp"
+        android:contentDescription="@string/desc_timer_number"
+        app:layout_constraintBottom_toBottomOf="@+id/timer_background"
+        app:layout_constraintEnd_toStartOf="@+id/timer_number_third"
+        app:layout_constraintTop_toTopOf="@+id/timer_background"
+        app:srcCompat="@drawable/d0" />
+
+    <ImageView
+        android:id="@+id/timer_number_third"
+        android:layout_width="25dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="1dp"
+        android:contentDescription="@string/desc_timer_number"
+        app:layout_constraintBottom_toBottomOf="@+id/timer_background"
+        app:layout_constraintEnd_toEndOf="@+id/timer_background"
+        app:layout_constraintTop_toTopOf="@+id/timer_background"
+        app:srcCompat="@drawable/d0" />
+
+    <ImageView
+        android:id="@+id/timer_number_first"
+        android:layout_width="25dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="2dp"
+        android:contentDescription="@string/desc_timer_number"
+        app:layout_constraintBottom_toBottomOf="@+id/timer_background"
+        app:layout_constraintEnd_toStartOf="@+id/timer_number_second"
+        app:layout_constraintTop_toTopOf="@+id/timer_background"
+        app:srcCompat="@drawable/d0" />
+
+    <ImageView
+        android:id="@+id/mine_counter_second"
+        android:layout_width="25dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="2dp"
+        android:contentDescription="@string/desc_mine_counter_number"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_counter_background"
+        app:layout_constraintStart_toEndOf="@+id/mine_counter_first"
+        app:layout_constraintTop_toTopOf="@+id/mine_counter_background"
+        app:srcCompat="@drawable/d0" />
+
+    <ImageView
+        android:id="@+id/mine_counter_third"
+        android:layout_width="25dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="2dp"
+        android:contentDescription="@string/desc_mine_counter_number"
+        app:layout_constraintBottom_toBottomOf="@+id/mine_counter_background"
+        app:layout_constraintStart_toEndOf="@+id/mine_counter_second"
+        app:layout_constraintTop_toTopOf="@+id/mine_counter_background"
+        app:srcCompat="@drawable/d0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/board_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/border_bottom"
+        app:layout_constraintEnd_toStartOf="@+id/border_right"
+        app:layout_constraintStart_toEndOf="@+id/border_left" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

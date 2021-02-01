@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Minesweeper</string>
+    <string name="start">Start</string>
+    <string name="background">background</string>
+    <string name="ranking">Local Ranking</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="back">Back</string>
+    <string name="rankingEasy">Easy</string>
+    <string name="rankingMedium">Medium</string>
+    <string name="rankingHard">Hard</string>
+    <string name="done">Done</string>
+    <string name="rank">Rank</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="desc_border_up">borer up</string>
+    <string name="desc_border_mid">border mid</string>
+    <string name="desc_border_bottom">border bottom</string>
+    <string name="desc_border_left">border left</string>
+    <string name="desc_border_right">border right</string>
+    <string name="desc_corner_bottom_left">border bottom left</string>
+    <string name="desc_corner_bottom_right">corner bottom right</string>
+    <string name="desc_corner_up_left">corner up left</string>
+    <string name="desc_corner_up_right">corner up right</string>
+    <string name="desc_t_left">t left</string>
+    <string name="desc_t_right">t right</string>
+    <string name="desc_face_button">new game button</string>
+    <string name="desc_mine_counter_background">mine counter background</string>
+    <string name="desc_timer_background">timer background</string>
+    <string name="desc_mine_counter_number">mine counter number</string>
+    <string name="desc_timer_number">timer number</string>
+    <string name="global_ranking">Global Ranking</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">LOGIN</string>
+    <string name="register">REGISTER</string>
+    <string name="login_baner">Login</string>
+    <string name="registration_baner">Registration</string>
+    <string name="player">Player</string>
+    <string name="logout">Logout</string>
+
+</resources>
