@@ -1,10 +1,10 @@
 # Minesweeper
-A classic computer game. Popularized by Mincrosoft and loved by me since 2016.  
-Written as my first android app. At the begining it was just a uni project.  
+A classic computer game. Popularized by Microsoft and loved by me since 2016.  
+Written as my first android app. At the beginning it was just a uni project.  
 After some time I upgraded it with some new features.  
 The game connects to my [Global Ranking](https://github.com/slawomirbuczek/Minesweeper-ranking).
 
-## Current functionalities:
+## Current features:
 * game:
   * default minesweeper's mechanics;
   * three levels:
