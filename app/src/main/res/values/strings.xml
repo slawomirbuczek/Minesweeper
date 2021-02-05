@@ -39,5 +39,12 @@
     <string name="registration_baner">Registration</string>
     <string name="player">Player</string>
     <string name="logout">Logout</string>
+    <string name="statistics">Statistics</string>
+    <string name="statistics_games">Games: </string>
+    <string name="statistics_wins">Wins: </string>
+    <string name="statistics_total_time">Total time: </string>
+    <string name="statistics_avg_time">Average time: </string>
+    <string name="statistics_best_time">Best time: </string>
+    <string name="statistics_percentage_of_wins">Win %: </string>
 
 </resources>

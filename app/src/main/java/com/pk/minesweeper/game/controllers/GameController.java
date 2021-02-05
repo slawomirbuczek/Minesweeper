@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 
 
 import com.pk.minesweeper.R;
+import com.pk.minesweeper.client.service.StatisticsService;
 import com.pk.minesweeper.game.board.BoardButton;
 import com.pk.minesweeper.game.board.Game;
 import com.pk.minesweeper.game.board.GameStatus;
@@ -87,6 +88,7 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
             game.addGameToDatabase(getApplicationContext());
         } else if (status == GameStatus.LOST) {
             findViewById(R.id.face).setBackgroundResource(R.drawable.face_lose);
+            game.addGameLostToStatistics(getApplicationContext());
         }
 
     }

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.pk.minesweeper.R;
-import com.pk.minesweeper.client.model.RankingRecord;
+import com.pk.minesweeper.client.models.RankingRecord;
 
 public class GlobalRankingRecycleViewAdapter extends RecyclerView.Adapter<GlobalRankingRecycleViewAdapter.ViewHolder> {
 

@@ -1,4 +1,4 @@
-package com.pk.minesweeper.client.model;
+package com.pk.minesweeper.client.models;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

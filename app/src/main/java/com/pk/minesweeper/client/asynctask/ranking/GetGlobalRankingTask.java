@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 
-import com.pk.minesweeper.client.model.RankingRecord;
+import com.pk.minesweeper.client.models.RankingRecord;
 import com.pk.minesweeper.game.levels.Level;
 
 import org.springframework.http.HttpEntity;

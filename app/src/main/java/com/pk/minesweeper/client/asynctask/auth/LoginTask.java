@@ -4,8 +4,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 
-import com.pk.minesweeper.client.model.LoginResponse;
-import com.pk.minesweeper.client.model.ResponseMessage;
+import com.pk.minesweeper.client.models.LoginResponse;
+import com.pk.minesweeper.client.models.ResponseMessage;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;

@@ -8,21 +8,7 @@
     android:background="@drawable/menu"
     android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/menuLogoutButton"
-        android:layout_width="fill_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="30dp"
-        android:background="#0000"
-        android:fontFamily="casual"
-        android:text="@string/logout"
-        android:textAllCaps="false"
-        android:textSize="50sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/menuGlobalRankingButton" />
+
 
     <TextView
         android:id="@+id/textView"
@@ -42,7 +28,7 @@
         android:id="@+id/menuStartButton"
         android:layout_width="fill_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="170dp"
         android:background="#0000"
         android:fontFamily="casual"
         android:text="@string/start"
@@ -83,5 +69,37 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/menuLocalRankingButton" />
+
+    <Button
+        android:id="@+id/menuStatisticsButton"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:background="#0000"
+        android:fontFamily="casual"
+        android:text="@string/statistics"
+        android:textAllCaps="false"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuGlobalRankingButton" />
+
+    <Button
+        android:id="@+id/menuLogoutButton"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="30dp"
+        android:background="#0000"
+        android:fontFamily="casual"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuStatisticsButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

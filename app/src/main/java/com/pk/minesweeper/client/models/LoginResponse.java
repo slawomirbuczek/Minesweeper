@@ -1,9 +1,9 @@
-package com.minesweeper.client.model;
+package com.pk.minesweeper.client.models;
 
 public class LoginResponse {
 
-    private ResponseMessage responseMessage;
-    private String JWT;
+    private final ResponseMessage responseMessage;
+    private final String JWT;
 
     public LoginResponse(ResponseMessage responseMessage, String JWT) {
         this.responseMessage = responseMessage;

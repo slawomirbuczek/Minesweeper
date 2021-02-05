@@ -19,6 +19,7 @@ public class MenuController extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.menuLocalRankingButton).setOnClickListener(this);
         findViewById(R.id.menuGlobalRankingButton).setOnClickListener(this);
         findViewById(R.id.menuLogoutButton).setOnClickListener(this);
+        findViewById(R.id.menuStatisticsButton).setOnClickListener(this);
     }
 
     @Override
@@ -35,6 +36,9 @@ public class MenuController extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.menuLogoutButton:
                 startActivity(new Intent(this, LoginController.class));
+                break;
+            case R.id.menuStatisticsButton:
+                startActivity(new Intent(this, StatisticsController.class));
                 break;
         }
     }

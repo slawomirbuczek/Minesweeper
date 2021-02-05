@@ -1,10 +1,9 @@
-package com.minesweeper.client.asynctask.ranking;
+package com.pk.minesweeper.client.asynctask.statistics;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.minesweeper.client.model.RankingRecord;
-import com.minesweeper.game.levels.Level;
+import com.pk.minesweeper.client.models.Statistics;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,20 +16,21 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Collections;
 
-public class GetGlobalRankingTask extends AsyncTask<Level, Void, RankingRecord[]> {
+public class GetStatisticsTask extends AsyncTask<Void, Void, Statistics> {
 
     private final String JWT;
 
-    public GetGlobalRankingTask(String jwt) {
+    public GetStatisticsTask(String jwt) {
         JWT = jwt;
     }
 
+
     @Override
-    protected RankingRecord[] doInBackground(Level... levels) {
-        return getRanking(levels[0]);
+    protected Statistics doInBackground(Void... voids) {
+        return getStatistics();
     }
 
-    private RankingRecord[] getRanking(Level level) {
+    private Statistics getStatistics() {
         try {
 
             HttpHeaders httpHeaders = new HttpHeaders();
@@ -42,18 +42,18 @@ public class GetGlobalRankingTask extends AsyncTask<Level, Void, RankingRecord[]
             RestTemplate restTemplate = new RestTemplate(true);
             restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
-            ResponseEntity<RankingRecord[]> response = restTemplate.exchange(
-                    "https://minesweeper-ranking.herokuapp.com/api/ranking/" + level.toString(),
+            ResponseEntity<Statistics> response = restTemplate.exchange(
+                    "https://minesweeper-ranking.herokuapp.com/api/statistics/",
                     HttpMethod.GET,
                     httpEntity,
-                    RankingRecord[].class
+                    Statistics.class
             );
 
             return response.getBody();
         } catch (HttpStatusCodeException e) {
             Log.d("GlobalRankingService RestClientException", e.getResponseBodyAsString() + " " + e.getStatusText());
+            return null;
         }
-        return new RankingRecord[]{};
     }
 
 }

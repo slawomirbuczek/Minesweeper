@@ -43,6 +43,10 @@
             android:name=".game.controllers.RegisterController"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".game.controllers.StatisticsController"
+            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

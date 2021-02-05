@@ -3,6 +3,7 @@ package com.pk.minesweeper.game.board;
 import android.content.Context;
 
 import com.pk.minesweeper.client.service.GlobalRankingService;
+import com.pk.minesweeper.client.service.StatisticsService;
 import com.pk.minesweeper.game.database.DatabaseRanking;
 import com.pk.minesweeper.game.labels.MinesCounter;
 import com.pk.minesweeper.game.labels.Timer;
@@ -112,7 +113,15 @@ public class Game {
         DatabaseRanking databaseRanking = new DatabaseRanking(context);
         databaseRanking.addSet(date, time, Level.getCurrentLevel().name());
 
-        GlobalRankingService.postRecord(time, Level.getCurrentLevel(), context);
+        addWonGameToStatistics(context);
+    }
+
+    public void addWonGameToStatistics(Context context) {
+        GlobalRankingService.postRecord(timer.getTime(), Level.getCurrentLevel(), context);
+    }
+
+    public void addGameLostToStatistics(Context context) {
+        StatisticsService.postStatistics(timer.getTime(), Level.getCurrentLevel(), context);
     }
 
     private void firstClick(BoardButton button) {
@@ -249,4 +258,5 @@ public class Game {
                         openField(bttn);
                     }
             );
+
 }

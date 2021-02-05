@@ -4,7 +4,7 @@ import android.content.Context;
 
 
 import com.pk.minesweeper.client.asynctask.auth.LoginTask;
-import com.pk.minesweeper.client.model.LoginResponse;
+import com.pk.minesweeper.client.models.LoginResponse;
 
 import org.json.JSONObject;
 

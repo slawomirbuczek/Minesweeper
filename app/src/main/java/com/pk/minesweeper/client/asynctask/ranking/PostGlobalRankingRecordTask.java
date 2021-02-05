@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 
-import com.pk.minesweeper.client.model.ResponseMessage;
+import com.pk.minesweeper.client.models.RankingRecord;
 import com.pk.minesweeper.game.levels.Level;
 
 import org.json.JSONObject;
@@ -49,14 +49,13 @@ public class PostGlobalRankingRecordTask extends AsyncTask<JSONObject, Void, Voi
             RestTemplate restTemplate = new RestTemplate(true);
             restTemplate.getMessageConverters().add(new MappingJacksonHttpMessageConverter());
 
-            ResponseEntity<ResponseMessage> response = restTemplate.exchange(
+            restTemplate.exchange(
                     "https://minesweeper-ranking.herokuapp.com/api/ranking/" + level.name(),
                     HttpMethod.POST,
                     httpEntity,
-                    ResponseMessage.class
+                    RankingRecord.class
             );
 
-            Log.i("Post record response", response.getBody().getMessage());
         } catch (HttpStatusCodeException e) {
             Log.d("postRecordEx", e.getResponseBodyAsString() + " " + e.getStatusText());
         }

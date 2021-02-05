@@ -1,4 +1,4 @@
-package com.minesweeper.client.model;
+package com.pk.minesweeper.client.models;
 
 public class ResponseMessage {
 
