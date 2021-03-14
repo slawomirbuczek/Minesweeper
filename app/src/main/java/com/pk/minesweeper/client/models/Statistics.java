@@ -4,11 +4,11 @@ public class Statistics {
 
     private String username;
 
-    private StatisticsDto statisticsEasy;
+    private StatisticsDto easy;
 
-    private StatisticsDto statisticsMedium;
+    private StatisticsDto medium;
 
-    private StatisticsDto statisticsHard;
+    private StatisticsDto hard;
 
     public Statistics() {
     }
@@ -21,27 +21,27 @@ public class Statistics {
         this.username = username;
     }
 
-    public StatisticsDto getStatisticsEasy() {
-        return statisticsEasy;
+    public StatisticsDto getEasy() {
+        return easy;
     }
 
-    public void setStatisticsEasy(StatisticsDto statisticsEasy) {
-        this.statisticsEasy = statisticsEasy;
+    public void setEasy(StatisticsDto easy) {
+        this.easy = easy;
     }
 
-    public StatisticsDto getStatisticsMedium() {
-        return statisticsMedium;
+    public StatisticsDto getMedium() {
+        return medium;
     }
 
-    public void setStatisticsMedium(StatisticsDto statisticsMedium) {
-        this.statisticsMedium = statisticsMedium;
+    public void setMedium(StatisticsDto medium) {
+        this.medium = medium;
     }
 
-    public StatisticsDto getStatisticsHard() {
-        return statisticsHard;
+    public StatisticsDto getHard() {
+        return hard;
     }
 
-    public void setStatisticsHard(StatisticsDto statisticsHard) {
-        this.statisticsHard = statisticsHard;
+    public void setHard(StatisticsDto hard) {
+        this.hard = hard;
     }
 }

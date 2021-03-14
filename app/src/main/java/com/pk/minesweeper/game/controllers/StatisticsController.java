@@ -35,9 +35,9 @@ public class StatisticsController extends AppCompatActivity implements View.OnCl
         ((TextView) findViewById(R.id.statistics_username))
                 .append(statistics.getUsername());
 
-        StatisticsDto statisticsEasy = statistics.getStatisticsEasy();
-        StatisticsDto statisticsMedium = statistics.getStatisticsMedium();
-        StatisticsDto statisticsHard = statistics.getStatisticsHard();
+        StatisticsDto statisticsEasy = statistics.getEasy();
+        StatisticsDto statisticsMedium = statistics.getMedium();
+        StatisticsDto statisticsHard = statistics.getHard();
 
         ((TextView) findViewById(R.id.statistics_easy_games))
                 .append(statisticsEasy.getTotalGamesPlayedAsString());

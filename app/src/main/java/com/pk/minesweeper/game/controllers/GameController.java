@@ -10,9 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-
 import com.pk.minesweeper.R;
-import com.pk.minesweeper.client.service.StatisticsService;
 import com.pk.minesweeper.game.board.BoardButton;
 import com.pk.minesweeper.game.board.Game;
 import com.pk.minesweeper.game.board.GameStatus;
@@ -26,10 +24,12 @@ import java.util.List;
 public class GameController extends AppCompatActivity implements View.OnTouchListener, View.OnLongClickListener {
 
     private Game game;
+    private GameStatus status;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.status = GameStatus.NOT_STARTED;
         setContentView(R.layout.activity_game);
         findViewById(R.id.face).setOnTouchListener(this);
         initGame();
@@ -39,13 +39,12 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
     protected void onPause() {
         game.pauseTimer();
         super.onPause();
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (game != null) {
+        if (game != null && status == GameStatus.IN_PROGRESS) {
             game.resumeTimer();
         }
     }
@@ -72,8 +71,8 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
                 newGame();
             } else {
                 BoardButton boardButton = findViewById(v.getId());
-                GameStatus status = game.onTouchActionUpEventHandler(boardButton);
-                gameStatusHandler(status);
+                status = game.onTouchActionUpEventHandler(boardButton);
+                gameStatusHandler();
             }
 
         }
@@ -81,7 +80,7 @@ public class GameController extends AppCompatActivity implements View.OnTouchLis
         return false;
     }
 
-    private void gameStatusHandler(GameStatus status) {
+    private void gameStatusHandler() {
 
         if (status == GameStatus.WON) {
             findViewById(R.id.face).setBackgroundResource(R.drawable.face_win);
