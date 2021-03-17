@@ -31,7 +31,7 @@ public class StatisticsService {
 
     public static void postStatistics(float time, Level level, Context context) {
         JSONObject jsonObject = new JSONObject();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSX", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         try {
             jsonObject.put("date", sdf.format(new Date()));
             jsonObject.put("time", time);

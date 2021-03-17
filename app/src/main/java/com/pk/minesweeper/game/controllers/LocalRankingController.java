@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pk.minesweeper.R;
-import com.pk.minesweeper.game.database.DatabaseRanking;
 import com.pk.minesweeper.game.animation.LocalRankingRecycleViewAdapter;
+import com.pk.minesweeper.game.database.DatabaseRanking;
 import com.pk.minesweeper.game.levels.Level;
+
+import java.util.Objects;
 
 public class LocalRankingController extends AppCompatActivity implements View.OnClickListener {
 
@@ -46,16 +48,13 @@ public class LocalRankingController extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.globalRankingEasyButton:
-                adapter.swapCursor(databaseRanking.getRanking(Level.EASY));
-                break;
-            case R.id.globalRankingMediumButton:
-                adapter.swapCursor(databaseRanking.getRanking(Level.MEDIUM));
-                break;
-            case R.id.globalRankingHardButton:
-                adapter.swapCursor(databaseRanking.getRanking(Level.HARD));
-                break;
+        int id = v.getId();
+        if (id == R.id.localRankingEasyButton) {
+            adapter.swapCursor(databaseRanking.getRanking(Level.EASY));
+        } else if (id == R.id.localRankingMediumButton) {
+            adapter.swapCursor(databaseRanking.getRanking(Level.MEDIUM));
+        } else if (id == R.id.localRankingHardButton) {
+            adapter.swapCursor(databaseRanking.getRanking(Level.HARD));
         }
         runLayoutAnimation();
     }
@@ -71,7 +70,7 @@ public class LocalRankingController extends AppCompatActivity implements View.On
                 this, R.anim.layout_animation_fall_down
         );
         recyclerView.setLayoutAnimation(animation);
-        recyclerView.getAdapter().notifyDataSetChanged();
+        Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
     }
 }

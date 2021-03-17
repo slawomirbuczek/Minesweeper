@@ -15,6 +15,8 @@ import com.pk.minesweeper.client.service.GlobalRankingService;
 import com.pk.minesweeper.game.animation.GlobalRankingRecycleViewAdapter;
 import com.pk.minesweeper.game.levels.Level;
 
+import java.util.Objects;
+
 
 public class GlobalRankingController extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,13 +46,11 @@ public class GlobalRankingController extends AppCompatActivity implements View.O
     @Override
     public void onClick(View v) {
         Level level = Level.EASY;
-        switch (v.getId()) {
-            case R.id.globalRankingMediumButton:
-                level = Level.MEDIUM;
-                break;
-            case R.id.globalRankingHardButton:
-                level = Level.HARD;
-                break;
+        int id = v.getId();
+        if (id == R.id.globalRankingMediumButton) {
+            level = Level.MEDIUM;
+        } else if (id == R.id.globalRankingHardButton) {
+            level = Level.HARD;
         }
 
         adapter.swapRanking(GlobalRankingService.getRanking(level, this));
@@ -63,7 +63,7 @@ public class GlobalRankingController extends AppCompatActivity implements View.O
                 this, R.anim.layout_animation_fall_down
         );
         recyclerView.setLayoutAnimation(animation);
-        recyclerView.getAdapter().notifyDataSetChanged();
+        Objects.requireNonNull(recyclerView.getAdapter()).notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
     }
 

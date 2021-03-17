@@ -53,20 +53,17 @@ public class LoginController extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-
-        switch (v.getId()) {
-            case R.id.login_button:
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                String result = LoginService.login(username, password, this);
-                Toast.makeText(this, result, Toast.LENGTH_LONG).show();
-                if (result.contains("successfully")) {
-                    startActivity(new Intent(this, MenuController.class));
-                }
-                break;
-            case R.id.login_register_button:
-                startActivity(new Intent(this, RegisterController.class));
-                break;
+        int id = v.getId();
+        if (id == R.id.login_button) {
+            String username = etUsername.getText().toString();
+            String password = etPassword.getText().toString();
+            String result = LoginService.login(username, password, this);
+            Toast.makeText(this, result, Toast.LENGTH_LONG).show();
+            if (result.contains("successfully")) {
+                startActivity(new Intent(this, MenuController.class));
+            }
+        } else if (id == R.id.login_register_button) {
+            startActivity(new Intent(this, RegisterController.class));
         }
     }
 

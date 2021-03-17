@@ -29,22 +29,18 @@ public class LevelSelectController extends AppCompatActivity implements View.OnC
         intent.putExtra("width", findViewById(R.id.level_select_layout).getWidth());
         intent.putExtra("height", findViewById(R.id.level_select_layout).getHeight());
 
-        switch (v.getId()) {
-            case R.id.easyButton:
-                Level.setCurrentLevel(Level.EASY);
-                startActivity(intent);
-                break;
-            case R.id.mediumButton:
-                Level.setCurrentLevel(Level.MEDIUM);
-                startActivity(intent);
-                break;
-            case R.id.hardButton:
-                Level.setCurrentLevel(Level.HARD);
-                startActivity(intent);
-                break;
-            case R.id.selectLevelBackButton:
-                startActivity(new Intent(this, MenuController.class));
-                break;
+        int id = v.getId();
+        if (id == R.id.easyButton) {
+            Level.setCurrentLevel(Level.EASY);
+            startActivity(intent);
+        } else if (id == R.id.mediumButton) {
+            Level.setCurrentLevel(Level.MEDIUM);
+            startActivity(intent);
+        } else if (id == R.id.hardButton) {
+            Level.setCurrentLevel(Level.HARD);
+            startActivity(intent);
+        } else if (id == R.id.selectLevelBackButton) {
+            startActivity(new Intent(this, MenuController.class));
         }
 
     }

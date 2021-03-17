@@ -29,9 +29,7 @@ public class RegisterController extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-
         String result = register();
-
         if (result.contains("successfully")) {
             Toast.makeText(this, result, Toast.LENGTH_LONG).show();
             startActivity(new Intent(this, LoginController.class));
